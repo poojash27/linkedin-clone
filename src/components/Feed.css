@@ -3,6 +3,7 @@
   margin: 0 20px;
 }
 
+/* Input Container: Write a post */
 .feed__inputContainer {
   margin-bottom: 20px;
   padding: 10px 10px 20px;
@@ -17,6 +18,7 @@
   border: 1px solid #ebebeb;
   border-radius: 30px;
 }
+
 .feed__input form {
   width: 100%;
   display: flex;
@@ -32,4 +34,10 @@
 }
 .feed__input form button {
   display: none;
+}
+
+/* Input Options: Photo Video etc */
+.feed__inputOptions {
+  display: flex;
+  justify-content: space-evenly;
 }
