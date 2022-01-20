@@ -1,44 +1,91 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# <img align="left" width="44" alt="Anushka LinkedIn" src="https://img.icons8.com/color/48/000000/linkedin.png"/> LinkedIn Clone
 
-## Available Scripts
+This is a clone of the LinkedIn website. It was built using ReactJS, Redux and Firebase.
 
-In the project directory, you can run:
+#### ✅ Link: https://linkedinclone-ac.web.app
 
-### `npm start`
+## 📜 Table of contents
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Overview](#overview)
+  - [Introduction](#introduction)
+  - [Screenshot](#screenshot)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+- [Author](#author)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 📝 Overview
 
-### `npm test`
+### Introduction
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- This web app allows the user to register/ sign in with their email ids.
+- User can then post messages on the feed.
+- User can see others' posts in realtime on their feed.
 
-### `npm run build`
+### Screenshot
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://user-images.githubusercontent.com/59930625/150352048-ccbac895-c695-45c4-b95a-128a6bfff7e4.png">
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## 💡 My process
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Built with
 
-### `npm run eject`
+- ReactJS
+- React Redux
+- Firebase Authentication
+- Firebase Firestore
+- Material UI Icons
+- React Flip Move Animation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### What I learned
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 😎 Proud of this code:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Bug fix**: `HeaderOption` was throwing an error when rendered on Login Page because `user` was `null`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Replace this:
 
-## Learn More
+```js
+{
+  avatar && (
+    <Avatar src={user.photoURL} className="headerOption__icon">
+      {user.email[0]}
+    </Avatar>
+  );
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+With this: No avatar on Login Page. The icon space is blank.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+{
+  avatar && user && (
+    <Avatar src={user.photoURL} className="headerOption__icon">
+      {user.email[0]}
+    </Avatar>
+  );
+}
+```
+
+Or this: Default avatar (👤) on Login Page and user's profile image (👩‍🦰) on Feed.
+
+```js
+{
+  avatar &&
+    (!user ? (
+      <Avatar className="headerOption__icon" /> // Login Page
+    ) : (
+      <Avatar src={user.photoURL} className="headerOption__icon">
+        {user.email[0]}
+      </Avatar>
+    )); // Feed Page
+}
+```
+
+## ⭐ Author
+
+- GitHub - [@anushkachauhxn](https://github.com/anushkachauhxn)
+- Behance - [@anushka_creates](https://www.behance.net/anushka_creates)
+
+- LinkedIn - [@anushka-chauhan](https://www.linkedin.com/in/anushka-chauhan)
+- Twitter - [@anushka_creates](https://twitter.com/anushka_creates)
