@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase';
 import { db } from '../firebase';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 import './Feed.css';
 import InputOption from './InputOption';
 import Post from './Post';
@@ -11,6 +13,7 @@ import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
 import NotesRoundedIcon from '@mui/icons-material/NotesRounded';
 
 function Feed() {
+    const user = useSelector(selectUser);
     const [input, setInput] = useState('');
     const [posts, setPosts] = useState([]);
 
@@ -31,10 +34,10 @@ function Feed() {
         e.preventDefault();
 
         db.collection("posts").add({
-            name: "ABC",
-            description: "DEF",
+            name: user.displayName,
+            description: user.email,
             message: input,
-            photoUrl: "",
+            photoUrl: user.photoURL || "",
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         });
 

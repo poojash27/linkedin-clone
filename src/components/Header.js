@@ -1,7 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from '../features/userSlice';
+import { auth } from '../firebase';
 import './Header.css';
 import HeaderOption from './HeaderOption';
-import logo from './logo.png';
+import logo from '../assets/logo.svg';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SupervisorAccountRoundedIcon from '@mui/icons-material/SupervisorAccountRounded';
@@ -10,6 +13,12 @@ import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 function Header() {
+  const dispatch = useDispatch();
+  const logoutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
+
   return (
     <div className="header">
       <div className="header__left">
@@ -27,7 +36,11 @@ function Header() {
           <HeaderOption Icon={BusinessCenterRoundedIcon} title="Jobs" />
           <HeaderOption Icon={ChatRoundedIcon} title="Messaging" />
           <HeaderOption Icon={NotificationsRoundedIcon} title="Notifications" />
-          <HeaderOption avatar="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" title="Me" />
+          <HeaderOption 
+            avatar={true}
+            title="Me" 
+            onClick={logoutOfApp}
+          />
       </div>
     </div>
   );
