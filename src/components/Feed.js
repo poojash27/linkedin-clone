@@ -11,6 +11,7 @@ import ImageRoundedIcon from '@mui/icons-material/ImageRounded';
 import SubscriptionsRoundedIcon from '@mui/icons-material/SubscriptionsRounded';
 import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
 import NotesRoundedIcon from '@mui/icons-material/NotesRounded';
+import FlipMove from 'react-flip-move';
 
 function Feed() {
     const user = useSelector(selectUser);
@@ -71,15 +72,17 @@ function Feed() {
             </div>
 
             {/* Posts */}
-            {posts.map(({ id, data: { name, description, message, photoUrl } }) => 
-                <Post 
-                    key={id}
-                    name={name}
-                    description={description}
-                    message={message}
-                    photoUrl={photoUrl}
-                />
-            )}
+            <FlipMove>
+                {posts.map(({ id, data: { name, description, message, photoUrl } }) => 
+                    <Post 
+                        key={id}
+                        name={name}
+                        description={description}
+                        message={message}
+                        photoUrl={photoUrl}
+                    />
+                )}
+            </FlipMove>
         </div>
     );
 }
