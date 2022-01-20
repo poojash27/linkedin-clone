@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import firebase from 'firebase';
+import { db } from '../firebase';
 import './Feed.css';
 import InputOption from './InputOption';
 import Post from './Post';
@@ -9,9 +11,34 @@ import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
 import NotesRoundedIcon from '@mui/icons-material/NotesRounded';
 
 function Feed() {
+    const [input, setInput] = useState('');
     const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        db.collection("posts")
+          .orderBy("timestamp", "desc")
+          .onSnapshot((snapshot) => 
+            setPosts(
+                snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data(),
+                }))
+            )
+          );
+    }, []);
+    
     const sendPost = (e) => {
         e.preventDefault();
+
+        db.collection("posts").add({
+            name: "ABC",
+            description: "DEF",
+            message: input,
+            photoUrl: "",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+
+        setInput("");
     }
 
     return (
@@ -20,8 +47,15 @@ function Feed() {
                 <div className="feed__input">
                     <CreateRoundedIcon />
                     <form action="">
-                        <input type="text" placeholder="Start a post" />
-                        <button onClick={sendPost} type="submit">Send</button>
+                        <input 
+                            value={input} 
+                            onChange={e => setInput(e.target.value)}
+                            type="text" 
+                            placeholder="Start a post" 
+                        />
+                        <button onClick={sendPost} type="submit">
+                            Send
+                        </button>
                     </form>
                 </div>
 
@@ -34,14 +68,15 @@ function Feed() {
             </div>
 
             {/* Posts */}
-            {posts.map((post) => {
-                <Post />
-            })}
-            <Post 
-                name="David Brown" 
-                description="Intern at Microsoft" 
-                message="WOW this worked!" 
-            />
+            {posts.map(({ id, data: { name, description, message, photoUrl } }) => 
+                <Post 
+                    key={id}
+                    name={name}
+                    description={description}
+                    message={message}
+                    photoUrl={photoUrl}
+                />
+            )}
         </div>
     );
 }
