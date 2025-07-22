@@ -63,14 +63,66 @@ function Feed() {
                     </form>
                 </div>
 
-                <div className="feed__inputOptions">
-                    <InputOption Icon={ImageRoundedIcon} title="Photo" iconColor="#70B5F9" />
-                    <InputOption Icon={SubscriptionsRoundedIcon} title="Video" iconColor="#7FC15E" />
-                    <InputOption Icon={EventNoteRoundedIcon} title="Event" iconColor="#E7A33E" />
-                    <InputOption Icon={NotesRoundedIcon} title="Write an article" iconColor="#FC9295" />
-                </div>
-            </div>
+               <div className="feed__inputOptions">
+  <InputOption
+    Icon={ImageRoundedIcon}
+    title="Photo"
+    iconColor="#70B5F9"
+    onClick={() =>
+      db.collection("posts").add({
+        name: user.displayName,
+        description: user.email,
+        message: "📷 Uploaded a photo",
+        photoUrl: user.photoURL || "",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+    }
+  />
+  <InputOption
+    Icon={SubscriptionsRoundedIcon}
+    title="Video"
+    iconColor="#7FC15E"
+    onClick={() =>
+      db.collection("posts").add({
+        name: user.displayName,
+        description: user.email,
+        message: "🎥 Shared a video",
+        photoUrl: user.photoURL || "",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+    }
+  />
+  <InputOption
+    Icon={EventNoteRoundedIcon}
+    title="Event"
+    iconColor="#E7A33E"
+    onClick={() =>
+      db.collection("posts").add({
+        name: user.displayName,
+        description: user.email,
+        message: "📅 Posted about an event",
+        photoUrl: user.photoURL || "",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+    }
+  />
+  <InputOption
+    Icon={NotesRoundedIcon}
+    title="Write an article"
+    iconColor="#FC9295"
+    onClick={() =>
+      db.collection("posts").add({
+        name: user.displayName,
+        description: user.email,
+        message: "📝 Published a new article",
+        photoUrl: user.photoURL || "",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+    }
+  />
+</div>
 
+        </div>
             {/* Posts */}
             <FlipMove>
                 {posts.map(({ id, data: { name, description, message, photoUrl } }) => 

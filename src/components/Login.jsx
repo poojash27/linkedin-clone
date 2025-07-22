@@ -4,6 +4,8 @@ import { auth } from '../firebase';
 import { login } from '../features/userSlice';
 import './Login.css';
 import logo from '../assets/logo-full.svg';
+import developerImage from '../assets/developer.jpg';
+      
 
 function Login() {
     const [name, setName] = useState("");
@@ -58,8 +60,9 @@ function Login() {
     };
     
     return (
-        <div className="login">
-            <img src={logo} alt="" />
+        <div className="login__container">
+    <div className="login__left">
+      <img src={logo} alt="" className="login__logo" />
 
             <form>
                 <input 
@@ -96,6 +99,16 @@ function Login() {
                 </span>
             </p>
         </div>
+
+        <div className="login__right">
+            <img
+                src={developerImage}
+                 alt="illustration"
+                className="login__image"
+            />
+
+    </div>
+  </div>
     );
 }
 

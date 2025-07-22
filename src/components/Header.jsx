@@ -11,6 +11,7 @@ import SupervisorAccountRoundedIcon from '@mui/icons-material/SupervisorAccountR
 import BusinessCenterRoundedIcon from '@mui/icons-material/BusinessCenterRounded';
 import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 function Header() {
   const dispatch = useDispatch();
@@ -18,6 +19,26 @@ function Header() {
     dispatch(logout());
     auth.signOut();
   };
+
+ const history = useHistory();
+
+  const handleClick = () => {
+    // Navigate to jobs page
+    history.push('/jobs');
+  };
+
+
+  const handleGoToNetwork = () => {
+    history.push('/network');
+  };
+
+  const handleGoToHome = () => {
+    history.push('/');
+  };
+
+  const handleGoToNotification = () => {
+    history.push('/notifications');
+  }
 
   return (
     <div className="header">
@@ -31,14 +52,13 @@ function Header() {
       </div>
 
       <div className="header__right">
-          <HeaderOption Icon={HomeRoundedIcon} title="Home" />
-          <HeaderOption Icon={SupervisorAccountRoundedIcon} title="My Network" />
-          <HeaderOption Icon={BusinessCenterRoundedIcon} title="Jobs" />
-          <HeaderOption Icon={ChatRoundedIcon} title="Messaging" />
-          <HeaderOption Icon={NotificationsRoundedIcon} title="Notifications" />
+          <HeaderOption Icon={HomeRoundedIcon} title="Home" onClick={handleGoToHome} />
+          <HeaderOption Icon={SupervisorAccountRoundedIcon} title="My Network" onClick={handleGoToNetwork} />
+          <HeaderOption Icon={BusinessCenterRoundedIcon} title="Jobs" onClick={handleClick} />
+          <HeaderOption Icon={NotificationsRoundedIcon} title="Notifications" onClick={handleGoToNotification} />
           <HeaderOption 
             avatar={true}
-            title="Me" 
+            title="Logout" 
             onClick={logoutOfApp}
           />
       </div>
