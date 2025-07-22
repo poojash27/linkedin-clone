@@ -9,7 +9,6 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SupervisorAccountRoundedIcon from '@mui/icons-material/SupervisorAccountRounded';
 import BusinessCenterRoundedIcon from '@mui/icons-material/BusinessCenterRounded';
-import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
