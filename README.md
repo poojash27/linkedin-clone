@@ -22,7 +22,9 @@ This is a clone of the LinkedIn website. It was built using ReactJS, Redux and F
 
 ### Screenshot
 
-<img src="https://user-images.githubusercontent.com/59930625/150352048-ccbac895-c695-45c4-b95a-128a6bfff7e4.png">
+
+<img src="https://raw.githubusercontent.com/poojash27/linkedin-clone/main/screenshot.png" width="600">
+
 
 ## 💡 My process
 
@@ -37,50 +39,13 @@ This is a clone of the LinkedIn website. It was built using ReactJS, Redux and F
 
 ### What I learned
 
-#### 😎 Proud of this code:
+- Implemented real-time database sync with Firestore.
+- Managed global state using Redux effectively.
+- Used Firebase Auth for secure sign in/sign up.
+- Handled conditional rendering of components based on user login state.
 
-**Bug fix**: `HeaderOption` was throwing an error when rendered on Login Page because `user` was `null`.
-
-Replace this:
-
-```js
-{
-  avatar && (
-    <Avatar src={user.photoURL} className="headerOption__icon">
-      {user.email[0]}
-    </Avatar>
-  );
-}
-```
-
-With this: No avatar on Login Page. The icon space is blank.
-
-```js
-{
-  avatar && user && (
-    <Avatar src={user.photoURL} className="headerOption__icon">
-      {user.email[0]}
-    </Avatar>
-  );
-}
-```
-
-Or this: Default avatar (👤) on Login Page and user's profile image (👩‍🦰) on Feed.
-
-```js
-{
-  avatar &&
-    (!user ? (
-      <Avatar className="headerOption__icon" /> // Login Page
-    ) : (
-      <Avatar src={user.photoURL} className="headerOption__icon">
-        {user.email[0]}
-      </Avatar>
-    )); // Feed Page
-}
-```
-
+---
 ## ⭐ Author
 
-- GitHub -
-- 
+-GitHub: [poojash27](https://github.com/poojash27)
+- Deployed on Netlify:[Live App](splendorous-vacherin-613bb5.netlify.app) 
